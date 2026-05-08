@@ -1,0 +1,401 @@
+/* Huangqihai Civilization · 黄旗海文明
+   Lake-basin archaeological aesthetic · dark slate-green default
+   Italiana (display) · Lora (body) · Space Mono (specimen) */
+
+:root {
+  --bg: #131d18;
+  --surface: #1a2820;
+  --surface-2: #243933;
+  --border: rgba(236, 229, 211, 0.12);
+  --border-strong: rgba(236, 229, 211, 0.28);
+  --ink: #ece5d3;
+  --ink-dim: #b6b29c;
+  --ink-mute: #7d7e6e;
+  --lake: #5fa8a8;
+  --sage: #8fb47a;
+  --ochre: #c8842c;
+  --bone: #d6c9a8;
+  --red: #c44a4a;
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  --radius: 4px;
+  --radius-lg: 12px;
+  --maxw: 1240px;
+  --display: "Italiana", "Cormorant Garamond", "Times New Roman", serif;
+  --body: "Lora", Georgia, serif;
+  --mono: "Space Mono", "JetBrains Mono", ui-monospace, monospace;
+}
+
+html[data-theme="light"] {
+  --bg: #f1ecdb;
+  --surface: #fbf6e8;
+  --surface-2: #ece4cc;
+  --border: rgba(26, 40, 32, 0.16);
+  --border-strong: rgba(26, 40, 32, 0.36);
+  --ink: #1a2820;
+  --ink-dim: #4a5a4d;
+  --ink-mute: #7c8472;
+  --lake: #2d6e6e;
+  --sage: #4f7a40;
+  --ochre: #9a5e15;
+  --bone: #5a4a26;
+  --red: #9a2828;
+  --shadow: 0 14px 34px rgba(26, 40, 32, 0.16);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16.5px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html[data-lang="en"] [lang="zh"] { display: none !important; }
+html[data-lang="zh"] [lang="en"] { display: none !important; }
+
+a { color: var(--lake); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+/* ─── Topbar ─────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.topbar-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 18px; height: 64px;
+}
+.brand {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--display); font-size: 22px; letter-spacing: 0.02em;
+  color: var(--ink);
+}
+.brand-mark {
+  width: 26px; height: 26px; flex: 0 0 auto;
+  border: 1.4px solid var(--lake); border-radius: 50%;
+  position: relative;
+}
+.brand-mark::before {
+  content: ""; position: absolute; inset: 6px; border-radius: 50%;
+  background: var(--ochre);
+}
+.brand small {
+  font-family: var(--mono); font-size: 10.5px; color: var(--ink-mute);
+  letter-spacing: 0.16em; text-transform: uppercase;
+  margin-left: 2px;
+}
+.nav { display: flex; gap: 22px; align-items: center; }
+.nav a {
+  color: var(--ink-dim); font-family: var(--mono); font-size: 12px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.nav a:hover { color: var(--ink); text-decoration: none; }
+
+.controls { display: flex; gap: 8px; align-items: center; }
+.lang-toggle, .theme-toggle {
+  display: inline-flex; border: 1px solid var(--border-strong);
+  border-radius: 999px; overflow: hidden; background: var(--surface);
+}
+.lang-toggle button, .theme-toggle button {
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em;
+  background: transparent; color: var(--ink-dim); border: 0;
+  padding: 6px 12px; cursor: pointer;
+}
+.lang-toggle button.active, .theme-toggle button.active {
+  background: var(--ink); color: var(--bg);
+}
+
+@media (max-width: 880px) {
+  .nav { display: none; }
+}
+
+/* ─── Hero ─────────────────────────────── */
+.hero {
+  padding: 96px 0 80px;
+  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(50% 70% at 75% 30%, rgba(95, 168, 168, 0.10), transparent 60%),
+    radial-gradient(60% 80% at 18% 90%, rgba(200, 132, 44, 0.08), transparent 60%);
+  pointer-events: none;
+}
+.hero-inner { position: relative; }
+.hero-eyebrow {
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--lake); margin-bottom: 24px;
+}
+.hero h1 {
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(44px, 7vw, 96px);
+  line-height: 1.02; letter-spacing: -0.005em;
+  margin: 0 0 20px; color: var(--ink);
+}
+.hero h1 em {
+  font-style: italic; color: var(--ochre);
+}
+.hero-sub {
+  font-size: 18px; color: var(--ink-dim); max-width: 760px;
+  margin: 0 0 32px; line-height: 1.65;
+}
+.hero-meta {
+  display: flex; flex-wrap: wrap; gap: 22px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-mute);
+}
+.hero-meta span::before { content: "◇ "; color: var(--lake); }
+
+/* ─── Section ─────────────────────────────── */
+section.module {
+  padding: 76px 0; border-bottom: 1px solid var(--border);
+}
+.section-head {
+  display: grid; grid-template-columns: 220px 1fr; gap: 32px;
+  margin-bottom: 36px; align-items: start;
+}
+.section-tag {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--lake);
+  border-top: 1px solid var(--lake); padding-top: 8px;
+}
+.section-head h2 {
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(30px, 4vw, 50px); margin: 0;
+  line-height: 1.06; color: var(--ink);
+}
+.section-lede {
+  margin-top: 16px; color: var(--ink-dim); max-width: 780px;
+  font-size: 16.5px;
+}
+@media (max-width: 760px) {
+  .section-head { grid-template-columns: 1fr; gap: 12px; }
+}
+
+/* ─── Map / SVG card ─────────────────────────────── */
+.map-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+.map-svg-wrap { width: 100%; overflow: hidden; border-radius: 6px; }
+.map-svg { width: 100%; height: auto; display: block; }
+.map-legend {
+  display: flex; flex-wrap: wrap; gap: 18px; margin-top: 16px;
+  font-family: var(--mono); font-size: 11.5px; color: var(--ink-dim);
+  letter-spacing: 0.05em;
+}
+.map-legend .swatch {
+  display: inline-block; width: 14px; height: 8px; border-radius: 2px;
+  vertical-align: middle; margin-right: 6px;
+}
+
+/* ─── Card grid ─────────────────────────────── */
+.card-row {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 24px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.card .kicker {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ochre); margin-bottom: 10px;
+}
+.card h3 {
+  font-family: var(--display); font-weight: 400; font-size: 26px;
+  margin: 0 0 10px; color: var(--ink); line-height: 1.15;
+}
+.card p { color: var(--ink-dim); font-size: 14.5px; line-height: 1.65; margin: 0 0 8px; }
+.card .stat-row {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;
+  margin-top: 14px; font-family: var(--mono); font-size: 11px; color: var(--ink-mute);
+}
+.card .stat-row span.v { display: block; color: var(--ink); font-size: 14px; margin-top: 2px; }
+
+/* ─── Artifact / Miaozigou cards ─────────────────────────────── */
+.artifact-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+.artifact {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 18px; text-align: center;
+}
+.artifact .ico { height: 80px; margin-bottom: 10px; }
+.artifact .ico svg { width: 100%; height: 100%; }
+.artifact .title {
+  font-family: var(--display); font-size: 19px; line-height: 1.2;
+  margin-bottom: 4px;
+}
+.artifact .sub {
+  font-family: var(--mono); font-size: 11px; color: var(--ink-mute);
+  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px;
+}
+.artifact .desc {
+  font-size: 13.5px; color: var(--ink-dim); line-height: 1.55;
+}
+
+/* ─── Comparison table ─────────────────────────────── */
+.comp-table {
+  width: 100%; border-collapse: collapse; font-size: 14.5px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+}
+.comp-table th, .comp-table td {
+  text-align: left; padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.comp-table th {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--lake);
+  background: var(--surface-2);
+}
+.comp-table tr:last-child td { border-bottom: 0; }
+.comp-table td:first-child { font-weight: 600; color: var(--ink); font-family: var(--display); font-size: 16px;}
+
+/* ─── Climate viz ─────────────────────────────── */
+.flow-viz {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 22px;
+}
+.flow-viz svg { width: 100%; height: auto; display: block; }
+
+/* ─── Simulator ─────────────────────────────── */
+.sim-shell {
+  display: grid; grid-template-columns: 320px 1fr; gap: 24px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 24px;
+}
+@media (max-width: 880px) {
+  .sim-shell { grid-template-columns: 1fr; }
+}
+.sim-shell h3 {
+  font-family: var(--display); font-weight: 400; font-size: 24px;
+  margin: 0 0 14px;
+}
+.sim-controls label {
+  display: block; font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.14em; color: var(--ink-mute); text-transform: uppercase;
+  margin-bottom: 6px; margin-top: 14px;
+}
+.sim-controls select, .sim-controls input[type="range"] {
+  width: 100%;
+  background: var(--surface-2); color: var(--ink);
+  border: 1px solid var(--border-strong); border-radius: 4px;
+  padding: 8px 10px; font-family: var(--mono); font-size: 13px;
+}
+.sim-output { display: flex; flex-direction: column; gap: 14px; }
+.sim-output .bar {
+  display: grid; grid-template-columns: 160px 1fr 60px;
+  gap: 10px; align-items: center;
+  font-family: var(--mono); font-size: 12px; color: var(--ink-dim);
+}
+.sim-output .bar .meter {
+  height: 10px; border-radius: 4px;
+  background: var(--surface-2); position: relative; overflow: hidden;
+}
+.sim-output .bar .meter > i {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: linear-gradient(90deg, var(--lake), var(--sage));
+  transition: width 0.4s;
+}
+.sim-output .bar .v { color: var(--ink); text-align: right; }
+.sim-readout {
+  font-family: var(--mono); font-size: 12.5px; color: var(--ink-dim);
+  border: 1px dashed var(--border-strong);
+  border-radius: 6px; padding: 14px 16px; margin-top: 8px;
+  line-height: 1.65;
+}
+
+/* ─── AI archaeologist ─────────────────────────────── */
+.ai-shell {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 26px;
+}
+.ai-prompts {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px;
+}
+.ai-prompt {
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.04em;
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 999px; padding: 8px 14px; color: var(--ink-dim);
+  cursor: pointer; transition: all 0.16s;
+}
+.ai-prompt:hover {
+  color: var(--ink); border-color: var(--lake);
+}
+.ai-input-row { display: flex; gap: 8px; }
+.ai-input-row input {
+  flex: 1; background: var(--surface-2); color: var(--ink);
+  border: 1px solid var(--border-strong); border-radius: 4px;
+  padding: 11px 14px; font-family: var(--body); font-size: 14.5px;
+}
+.ai-input-row button {
+  background: var(--lake); color: var(--bg); border: 0;
+  padding: 11px 22px; font-family: var(--mono); font-size: 12px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  border-radius: 4px; cursor: pointer; font-weight: 700;
+}
+.ai-input-row button:hover { background: var(--ochre); }
+.ai-output {
+  margin-top: 18px; min-height: 80px;
+  font-size: 15px; line-height: 1.75; color: var(--ink-dim);
+  border-top: 1px solid var(--border); padding-top: 16px;
+}
+.ai-output strong { color: var(--ink); }
+.ai-output em {
+  font-style: normal; color: var(--lake); font-family: var(--mono);
+  font-size: 12.5px; letter-spacing: 0.06em;
+}
+.ai-output p { margin: 0 0 12px; }
+
+/* ─── Guardrails ─────────────────────────────── */
+.guardrails {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 26px;
+  border-left: 3px solid var(--red);
+}
+.guardrails h3 {
+  font-family: var(--display); font-weight: 400; margin: 0 0 12px;
+  font-size: 24px;
+}
+.guardrails ul { margin: 0; padding-left: 20px; }
+.guardrails li { color: var(--ink-dim); margin-bottom: 10px; font-size: 14.5px; }
+
+/* ─── Footer ─────────────────────────────── */
+footer {
+  padding: 60px 0 50px;
+  font-family: var(--mono); font-size: 12px; color: var(--ink-mute);
+  letter-spacing: 0.04em;
+}
+footer a { color: var(--ink-dim); }
+footer .foot-row {
+  display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+}
+footer .links { display: flex; gap: 18px; flex-wrap: wrap; }
+
+/* ─── Util ─────────────────────────────── */
+.mono { font-family: var(--mono); }
+.dim { color: var(--ink-dim); }
+.tag-lake { color: var(--lake); }
+.tag-sage { color: var(--sage); }
+.tag-ochre { color: var(--ochre); }
+.tag-red { color: var(--red); }
